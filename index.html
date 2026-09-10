@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Midnight, Ange</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,500&family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= AMBIENT SKY (signature element, always present) ================= -->
+<div class="sky" aria-hidden="true">
+  <div class="stars" id="stars"></div>
+  <div class="horizon">
+    <div class="sun-moon" id="sunMoon"></div>
+  </div>
+</div>
+
+<!-- ================= PIN LOCK SCREEN ================= -->
+<section id="pinScreen" class="pin-screen">
+  <div class="pin-card">
+    <img class="pin-gate-icon" src="Assets_resources_items/pin_gate_design.png" alt="lock icon">
+    <p class="eyebrow">A little world, just for you dear</p>
+    <h1 class="wordmark">Midnight, <em>Ange</em></h1>
+    <p class="pin-instruction">If you know the code maybe you are very special person to access this website</p>
+
+    <div class="pin-inputs" id="pinInputs">
+      <input type="tel" inputmode="numeric" maxlength="1" class="pin-digit" data-index="0">
+      <input type="tel" inputmode="numeric" maxlength="1" class="pin-digit" data-index="1">
+      <input type="tel" inputmode="numeric" maxlength="1" class="pin-digit" data-index="2">
+      <input type="tel" inputmode="numeric" maxlength="1" class="pin-digit" data-index="3">
+      <input type="tel" inputmode="numeric" maxlength="1" class="pin-digit" data-index="4">
+      <input type="tel" inputmode="numeric" maxlength="1" class="pin-digit" data-index="5">
+    </div>
+
+    <p class="pin-error" id="pinError">Hindi yan ang PIN, try again lablab ko.</p>
+    <button class="pin-submit" id="pinSubmit">Unlock</button>
+  </div>
+</section>
+
+<!-- ================= MAIN APP ================= -->
+<div id="app" class="app hidden">
+
+  <header class="app-header">
+    <h1 class="wordmark small">Midnight, <em>Ange</em></h1>
+    <div class="header-actions">
+      <button class="home-toggle hidden" id="homeToggle" aria-label="back to menu">
+        <img class="home-toggle-icon" src="Assets_resources_items/Home_icon.png" alt="home">
+      </button>
+      <button class="settings-toggle" id="settingsToggle" aria-label="settings"><img class="settings-toggle-icon" src="Assets_resources_items/Setting_Icon.png" alt="settings"></button>
+    </div>
+  </header>
+
+  <!-- ---------- SCENE NAV (grid menu) ---------- -->
+  <section class="scene-nav-home" id="sceneNavHome">
+    <p class="scene-nav-eyebrow">welcome, lablab</p>
+    <h2 class="scene-nav-title">Saan tayo pupunta?</h2>
+    <nav class="scene-nav" id="sceneNav">
+      <button class="nav-dot" data-goto="0" aria-label="open when">
+        <span class="nav-icon"><img src="images/Navigation_Icons/Open_When_Icon.png" alt=""></span>
+        <span class="nav-label">Open When...</span>
+      </button>
+      <button class="nav-dot" data-goto="1" aria-label="quiz">
+        <span class="nav-icon"><img src="images/Navigation_Icons/Gaano_Mo_Ako_Kilala_Icon.png" alt=""></span>
+        <span class="nav-label">Gaano Mo Ako Kilala?</span>
+      </button>
+      <button class="nav-dot" data-goto="2" aria-label="catch my hearts">
+        <span class="nav-icon"><img src="images/Navigation_Icons/Purple_Heart.png" alt=""></span>
+        <span class="nav-label">Saluhin Mo Nga Puso Ko?</span>
+      </button>
+      <button class="nav-dot" data-goto="3" aria-label="us in numbers">
+        <span class="nav-icon"><img src="images/Navigation_Icons/Relationship_Clock_Icon.png" alt=""></span>
+        <span class="nav-label">Us, In Every Numbers</span>
+      </button>
+      <button class="nav-dot" data-goto="4" aria-label="freedom wall">
+        <span class="nav-icon"><img src="images/Navigation_Icons/Freedom_Wall_Icon.png" alt=""></span>
+        <span class="nav-label">Freedom Wall</span>
+      </button>
+      <button class="nav-dot" data-goto="5" aria-label="tengai gatcha draw">
+        <span class="nav-icon"><img src="images/Navigation_Icons/Gatcha_Draw_Icon.png" alt=""></span>
+        <span class="nav-label">Tengai Gatcha Draw</span>
+      </button>
+    </nav>
+  </section>
+
+  <main class="scenes hidden" id="scenes">
+
+    <!-- ---------- SCENE 1: OPEN WHEN ---------- -->
+    <section class="scene" data-scene="0" id="scene-envelopes">
+      <p class="scene-eyebrow">i.</p>
+      <h2 class="scene-title">Open When...</h2>
+      <p class="scene-sub">Pindot ka lang depende sa mood mo or kapag bored ka HAHAHA</p>
+
+      <div class="envelope-field" id="envelopeField"><!-- envelopes injected by JS --></div>
+    </section>
+
+    <!-- ---------- SCENE 2: QUIZ ---------- -->
+    <section class="scene" data-scene="1" id="scene-quiz">
+      <p class="scene-eyebrow">ii.</p>
+      <h2 class="scene-title">Gaano Mo Ako Kilala?</h2>
+      <p class="scene-sub">Tengai edition</p>
+
+      <div class="quiz-wrap" id="quizWrap"><!-- quiz injected by JS --></div>
+    </section>
+
+    <!-- ---------- SCENE 3: CATCH MY HEARTS ---------- -->
+    <section class="scene" data-scene="2" id="scene-hearts">
+      <p class="scene-eyebrow">iii.</p>
+      <h2 class="scene-title">Saluhin Mo Nga Puso Ko?</h2>
+      <p class="scene-sub" id="heartsSub">Tap the hearts before they fall, iwasan ang mga <img class="inline-emoji-icon" src="Assets_resources_items/Falling_Rocks.png" alt="rock"> rocks, -2 pts!</p>
+
+      <div class="hearts-game" id="heartsGame">
+        <div class="hearts-hud">
+          <span class="hearts-score">score: <b id="heartsScore">0</b></span>
+          <span class="hearts-goal">goal: <b id="heartsGoal">0</b></span>
+          <span class="hearts-time">time: <b id="heartsTime">25</b>s</span>
+        </div>
+        <div class="hearts-stage-wrap">
+          <div class="hearts-stage" id="heartsStage"></div>
+          <div class="hearts-result hidden" id="heartsResult"></div>
+        </div>
+        <button class="game-btn" id="heartsStart">Start</button>
+      </div>
+    </section>
+
+    <!-- ---------- SCENE 4: FACTS / TIMER ---------- -->
+    <section class="scene" data-scene="3" id="scene-facts">
+      <p class="scene-eyebrow">iv.</p>
+      <h2 class="scene-title">Us, In Every Numbers</h2>
+      <p class="scene-sub">February 17, 2025 &mdash; Present Day</p>
+
+      <div class="facts-grid" id="factsGrid">
+        <div class="fact-cell"><span class="fact-num" id="fYears">0</span><span class="fact-label">years</span></div>
+        <div class="fact-cell"><span class="fact-num" id="fMonths">0</span><span class="fact-label">months</span></div>
+        <div class="fact-cell"><span class="fact-num" id="fWeeks">0</span><span class="fact-label">weeks</span></div>
+        <div class="fact-cell"><span class="fact-num" id="fDays">0</span><span class="fact-label">days</span></div>
+        <div class="fact-cell"><span class="fact-num" id="fHours">0</span><span class="fact-label">hours</span></div>
+        <div class="fact-cell wide"><span class="fact-num" id="fSeconds">0</span><span class="fact-label">seconds, and still counting</span></div>
+      </div>
+      <p class="facts-note">Every second of it, still my favorite decision.</p>
+    </section>
+
+    <!-- ---------- SCENE 5: FREEDOM WALL ---------- -->
+    <section class="scene" data-scene="4" id="scene-wall">
+      <p class="scene-eyebrow">v.</p>
+      <h2 class="scene-title">Freedom Wall</h2>
+      <p class="scene-sub" id="wallSub">Post anything. Your thoughts, confessions, random rants 🫶</p>
+
+      <div class="wall-panel" id="wallPanel">
+        <form class="wall-add" id="wallAddForm">
+          <input type="text" id="wallNameInput" class="wall-name-input" placeholder="name (optional, pwede rin anonymous)" maxlength="40" autocomplete="off">
+          <textarea id="wallInput" class="wall-textarea" placeholder="type your message..." maxlength="500" rows="3"></textarea>
+          <button type="submit" class="wall-post-btn" id="wallPostBtn">Post to the wall</button>
+        </form>
+
+        <p class="wall-status" id="wallStatus"></p>
+
+        <div class="wall-grid" id="wallGrid"><!-- wall posts injected by JS --></div>
+      </div>
+    </section>
+
+    <!-- ---------- SCENE 6: TENGAI GATCHA DRAW ---------- -->
+    <section class="scene" data-scene="5" id="scene-gatcha">
+      <p class="scene-eyebrow">vi.</p>
+      <h2 class="scene-title">Tengai Gatcha Draw</h2>
+      <p class="scene-sub">Spend diamonds, pull for limited edition skins</p>
+
+      <!-- step 1: enter diamonds before the game starts -->
+      <div class="gatcha-entry" id="gatchaEntry">
+        <img class="gatcha-entry-icon" src="Assets_resources_items/Diamond.png" alt="diamond">
+        <p class="gatcha-entry-label">Ilang Diamonds ang gusto mong gamitin?</p>
+        <input type="number" inputmode="numeric" min="1" step="1" class="gatcha-diamond-input" id="gatchaDiamondInput" placeholder="e.g. 500">
+        <p class="gatcha-entry-error hidden" id="gatchaEntryError">Maglagay ka muna ng valid na number, lablab.</p>
+        <button class="game-btn" id="gatchaEnterBtn">Enter</button>
+      </div>
+
+      <!-- step 2: gatcha panel -->
+      <div class="gatcha-panel hidden" id="gatchaPanel">
+
+        <div class="gatcha-hud">
+          <div class="gatcha-chip">
+            <img src="Assets_resources_items/Diamond.png" class="gatcha-chip-icon" alt="diamonds">
+            <span id="gatchaDiamondBalance">0</span>
+          </div>
+          <div class="gatcha-chip">
+            <img src="Assets_resources_items/Matcha Powder.png" class="gatcha-chip-icon" alt="matcha powder">
+            <span id="gatchaMatchaBalance">0</span>
+          </div>
+          <div class="gatcha-chip gatcha-chip-key">
+            <img src="Assets_resources_items/Matcha Key.png" class="gatcha-chip-icon" alt="matcha key">
+            <span id="gatchaKeyBalance">0</span>
+          </div>
+        </div>
+
+        <div class="gatcha-recharge">
+          <input type="number" inputmode="numeric" min="1" step="1" class="gatcha-recharge-input" id="gatchaRechargeInput" placeholder="Enter Diamonds">
+          <button class="gatcha-recharge-btn" id="gatchaRechargeBtn">
+            <img src="Assets_resources_items/Diamond.png" class="gatcha-recharge-icon" alt="">Free Recharge 
+          </button>
+        </div>
+        <p class="gatcha-recharge-msg hidden" id="gatchaRechargeMsg"></p>
+
+        <div class="gatcha-results-panel">
+          <div class="gatcha-results-total hidden" id="gatchaResultsTotal">
+            <div class="gatcha-results-total-header">
+              <img src="Assets_resources_items/Matcha Powder.png" class="gatcha-results-total-icon" alt="matcha powder">
+              <span class="gatcha-results-total-label">Matcha Powder collected</span>
+            </div>
+            <span class="gatcha-results-total-value" id="gatchaResultsTotalValue">0</span>
+          </div>
+          <div class="gatcha-results hidden" id="gatchaResults"></div>
+        </div>
+
+        <div class="gatcha-draw-buttons">
+          <button class="game-btn gatcha-draw-btn" id="gatchaDraw1x">
+            1x Draw <span class="gatcha-cost"><img src="Assets_resources_items/Diamond.png" class="gatcha-cost-icon" alt="">10</span>
+          </button>
+          <button class="game-btn gatcha-draw-btn" id="gatchaDraw10x">
+            12x Draw <span class="gatcha-cost"><img src="Assets_resources_items/Diamond.png" class="gatcha-cost-icon" alt="">100</span>
+          </button>
+        </div>
+
+        <p class="gatcha-msg" id="gatchaMsg"></p>
+
+        <div class="gatcha-exchange">
+          <p class="gatcha-exchange-title">Draw Exchange:</p>
+          <p class="gatcha-exchange-sub">i-exchange ang Matcha Powder mo para sa mga Tengai</p>
+          <div class="gatcha-exchange-grid" id="gatchaExchangeGrid"><!-- injected by JS --></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</div>
+
+<!-- ---------- ENVELOPE MODAL ---------- -->
+<div class="modal-overlay hidden" id="envelopeModal">
+  <div class="modal-card">
+    <button class="modal-close" id="envelopeModalClose">&times;</button>
+    <p class="modal-eyebrow" id="envelopeModalEyebrow"></p>
+    <div class="modal-body" id="envelopeModalBody"></div>
+  </div>
+</div>
+
+<!-- ---------- GATCHA EXCHANGE CONGRATS MODAL ---------- -->
+<div class="modal-overlay hidden" id="gatchaExchangeModal">
+  <div class="modal-card gatcha-congrats-card">
+    <button class="modal-close" id="gatchaExchangeModalClose">&times;</button>
+    <p class="modal-eyebrow">Draw exchanged</p>
+    <p class="gatcha-congrats-title">Congratulations you got</p>
+    <img class="gatcha-congrats-icon" id="gatchaExchangeModalIcon" src="" alt="">
+    <p class="gatcha-congrats-name" id="gatchaExchangeModalName"></p>
+  </div>
+</div>
+
+<!-- ---------- SETTINGS MODAL ---------- -->
+<div class="modal-overlay hidden" id="settingsModal">
+  <div class="modal-card">
+    <button class="modal-close" id="settingsModalClose">&times;</button>
+    <p class="modal-eyebrow">Settings</p>
+    <div class="modal-body settings-body">
+      <div class="music-controls">
+        <p class="settings-line">Now playing</p>
+        <p class="music-song-name" id="musicSongName">—</p>
+        <div class="music-buttons">
+          <button class="music-btn" id="musicPrevBtn" aria-label="previous song"><img class="music-btn-icon" src="Assets_resources_items/Reback_Song.png" alt="previous song"></button>
+          <button class="music-btn music-btn-main" id="musicPlayPauseBtn" aria-label="play or pause music">
+            <img class="music-btn-icon" id="musicPauseIcon" src="Assets_resources_items/Play.png" alt="pause">
+            <img class="music-btn-icon music-btn-icon-play" id="musicPlayIcon" src="Assets_resources_items/Pause.png" alt="play">
+          </button>
+          <button class="music-btn" id="musicNextBtn" aria-label="next song"><img class="music-btn-icon" src="Assets_resources_items/Next_Song.png" alt="next song"></button>
+        </div>
+      </div>
+      <p class="settings-line">Need to lock things back up?</p>
+      <button class="logout-btn" id="logoutBtn">Log out</button>
+      <p class="settings-note">This locks the site again, you'll need the PIN to get back in.</p>
+    </div>
+  </div>
+</div>
+
+<!-- background audio -->
+<audio id="bgAudio" preload="none"></audio>
+<audio id="drawSoundAudio" src="Assets_resources_items/DrawSound.mp3" preload="none"></audio>
+<audio id="exchangeVictoryAudio" src="Assets_resources_items/Victory.mp3" preload="none"></audio>
+<audio id="exchangeWowAudio" src="Assets_resources_items/WowCongratulations.mp3" preload="none"></audio>
+
+<script src="app.js"></script>
+</body>
+</html>
