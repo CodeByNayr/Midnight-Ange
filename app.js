@@ -260,7 +260,7 @@ const envelopeData = [
     label: "open mo to kung galit kana sakin",
     icon: "images/cat_angry.gif",
     eyebrow: "for when i messed up",
-    body: "Sorry na mahal ko kung na uubos ko nanaman pasensya mo, pasensya na 🙇‍♂️🙇‍♂️ mahal na mahal kita Ange 🫶"
+    body: "Sorry na mahal ko kung na uubos ko nanaman pasensya mo, pasensya na 🙇‍♂️🙇‍♂️ mahal na mahal kita Ange"
   },
   {
     label: "open mo to kung gusto mo matawa",
